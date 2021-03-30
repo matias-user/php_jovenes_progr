@@ -1,4 +1,5 @@
 <?php
+
 $servername = "localhost";
 $database = "registro_usuarios";
 $username = "root";
@@ -12,19 +13,33 @@ if (!$conexion) {
  
 echo "Connected successfully </br>";
  
-$sql = "UPDATE registros SET nombre = 'Matias', contrasena = 'root', rut = '192818699' WHERE rut = '19281869' ";
+// $sql = "UPDATE registros SET nombre = 'Matias', contrasena = 'root', rut = '192818699' WHERE rut = '19281869' ";
 
-$query = "SELECT * FROM registros ORDER by rut ";
-$result = mysqli_query($conexion, $query);
+$consulta = "SELECT * FROM registros ORDER by rut ";
+$resultado = mysqli_query($conexion, $consulta);
 
-echo 'Consulta exitosa';
+if($resultado){
+      echo 'Consulta exitosa';
+      while ( $row = $resultado->fetch_array()){
+      $rut = $row['rut'];
+      $nombre = $row['nombre'];
+      $email = $row['email'];
+      
+      ?>
+      <div>
+            <h2><?php echo $nombre ?> </h2>
+            <div>
+                  <p>
+                  RUT: <?php echo $rut ?>
+                  <br>
+                  Email: <?php echo $email ?>
+                  <br>
+                  </p>
+            </div>
+      </div>
+      <?php 
+      };
+};
 
-// if (mysqli_query($conexion, $sql)) {
-//       echo "New record created successfully";
-// } else {
-//       echo "Error: " . $sql . "<br>" . mysqli_error($conexion);
-// }
-// mysqli_close($conexion);
 
 
-?>
