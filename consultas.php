@@ -1,19 +1,8 @@
 <?php
 
-$servername = "localhost";
-$database = "registro_usuarios";
-$username = "root";
-$password = "";
-// Create connection
-$conexion = mysqli_connect($servername, $username, $password, $database);
-// Check connection
-if (!$conexion) {
-      die("Connection failed: " . mysqli_connect_error());
-}
+include 'conexion.php';
  
-echo "Connected successfully </br>";
- 
-// $sql = "UPDATE registros SET nombre = 'Matias', contrasena = 'root', rut = '192818699' WHERE rut = '19281869' ";
+// $consulta = "UPDATE registros SET nombre = 'Matias', contrasena = 'root', rut = '192818699' WHERE rut = '19281869' ";
 
 $consulta = "SELECT * FROM registros ORDER by rut ";
 $resultado = mysqli_query($conexion, $consulta);
